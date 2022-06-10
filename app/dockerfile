@@ -1,13 +1,15 @@
-FROM node:15
+FROM node:12-alpine
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-COPY package.json /app/package.json
+COPY package*.json ./
 
 RUN npm install
 
-RUN mv /code/node_modules /node_modules
+COPY . .
 
-COPY . /code
+EXPOSE 8080
 
-CMD ["npm", "start"]
+# Command to run when the container is ready
+# Separate arguments as separate values in the array
+CMD [ "npm", "run", "start"]
