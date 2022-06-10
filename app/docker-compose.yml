@@ -17,7 +17,7 @@ services:
     links:
       - db
     volumes:
-    - ./:/usr/src/app/
+      - ./:/usr/src/app/
    db:
     image: postgres:12-alpine
     restart: always
