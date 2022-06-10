@@ -1,0 +1,32 @@
+version: "3.1"
+services:  
+  app:
+    build: .
+    depends_on:
+    # this ensures database is loaded first
+      - db    
+    ports:
+      - "8080:8080"
+    environment:
+      NODE_ENV: production
+      DB_HOST: ${IMMO_DB_HOST}
+      DB_PORT: DB_PORT
+      DB_USER: ${IMMO_DB_USER}
+      DB_PASSWORD: ${IMMO_DB_PASSWORD}
+      DB_NAME: ${IMMO_DB}
+    links:
+      - db
+    volumes:
+    - ./:/usr/src/app/
+    - /usr/src/app/node_modules
+  db:
+    image: postgres:12-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${IMMO_DB_PASSWORD}
+      POSTGRES_USER: ${IMMO_DB_USER}
+      POSTGRES_DB: ${IMMO_DB_HOST}
+    volumes:
+      - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
+    ports:
+      - "5432:${DB_PORT}"  

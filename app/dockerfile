@@ -1,0 +1,13 @@
+FROM node:15
+
+WORKDIR /app
+
+COPY package.json /app/package.json
+
+RUN npm install
+
+RUN mv /code/node_modules /node_modules
+
+COPY . /code
+
+CMD ["npm", "start"]
