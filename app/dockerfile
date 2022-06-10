@@ -6,8 +6,6 @@ COPY package.json /app/package.json
 
 RUN npm install
 
-RUN mv /node_modules /node_modules
-
 COPY . /code
 
 CMD ["npm", "start"]
