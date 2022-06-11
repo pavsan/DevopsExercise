@@ -1,8 +1,8 @@
-FROM node:12-alpine
+FROM node:12.22
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY package*.json .
 
 RUN npm install
 
@@ -12,4 +12,4 @@ EXPOSE 8080
 
 # Command to run when the container is ready
 # Separate arguments as separate values in the array
-CMD [ "npm", "run", "start"]
+CMD ["npm", "run", "start"]
