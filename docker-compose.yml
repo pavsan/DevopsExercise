@@ -19,3 +19,5 @@ services:
       - data_db:/var/lib/postgresql/data
     ports:
       - "${DB_PORT}:${DB_PORT}"  
+volumes:
+  data_db:
