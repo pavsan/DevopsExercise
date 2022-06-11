@@ -5,7 +5,7 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-    # this ensures database is loaded first
+    # this ensures database is loaded first.
       - db  
     volumes:    
       - /usr/app/node_modules
