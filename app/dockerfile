@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 8080
+EXPOSE 4200
 
 # Command to run when the container is ready
 # Separate arguments as separate values in the array

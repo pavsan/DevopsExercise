@@ -10,15 +10,10 @@ services:
     volumes:    
       - /app/node_modules
   db:
-    image: postgres:12-alpine
-    healthcheck:
-      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
-      timeout: 45s
-      interval: 10s
-      retries: 10
+    image: postgres:12-alpine    
     restart: always
     environment:
-      - DATABASE_HOST=127.0.0.1
+      - DATABASE_HOST=${IMMO_DB_HOST}
       - POSTGRES_USER= ${IMMO_DB_USER}
       - POSTGRES_PASSWORD=${IMMO_DB_PASSWORD}
       - POSTGRES_DB=${IMMO_DB}  
@@ -27,14 +22,6 @@ services:
       - data_db:/var/lib/postgresql/data
     ports:
       - "${DB_PORT}:${DB_PORT}"  
-  pgadmin-compose:
-        image: dpage/pgadmin4
-        environment: 
-            PGADMIN_DEFAULT_EMAIL: "test@gmail.com"
-            PGADMIN_DEFAULT_PASSWORD: "test123!"
-        ports: 
-            - "16543:80"
-        depends_on: 
-            - db    
+  
 volumes:
   data_db:
