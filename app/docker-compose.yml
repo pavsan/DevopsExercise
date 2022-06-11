@@ -17,7 +17,7 @@ services:
       POSTGRES_USER: ${IMMO_DB_USER}
       POSTGRES_DB: ${IMMO_DB}
     volumes:
-      - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
+      - ./db/setup.sql:/docker-entrypoint-initdb.d/setup.sql
       - data_db:/var/lib/postgresql/data
     ports:
       - "${DB_PORT}:${DB_PORT}"  
